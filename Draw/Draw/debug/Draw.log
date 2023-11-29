@@ -1,0 +1,5 @@
+﻿  sizehandlerect.cpp
+sizehandlerect.cpp(214): warning C4100: “widget”: 未引用的形参
+sizehandlerect.cpp(214): warning C4100: “option”: 未引用的形参
+  Draw.vcxproj -> G:\renyongfa_work\development\Draw\debug\Draw.exe
+  Draw.vcxproj -> debug\Draw.pdb (Full PDB)
