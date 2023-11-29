@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 **
 ** Copyright (C) 2016 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
@@ -611,4 +611,4 @@ bool QtButtonPropertyBrowser::isExpanded(QtBrowserItem *item) const
 
 QT_END_NAMESPACE
 
-#include "moc_qtbuttonpropertybrowser.cpp"
+//#include "moc_qtbuttonpropertybrowser.cpp"

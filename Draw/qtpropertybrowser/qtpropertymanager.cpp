@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 **
 ** Copyright (C) 2016 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
@@ -6426,5 +6426,5 @@ void QtCursorPropertyManager::uninitializeProperty(QtProperty *property)
 
 QT_END_NAMESPACE
 
-#include "moc_qtpropertymanager.cpp"
-#include "qtpropertymanager.moc"
+//#include "moc_qtpropertymanager.cpp"
+//#include "qtpropertymanager.moc"

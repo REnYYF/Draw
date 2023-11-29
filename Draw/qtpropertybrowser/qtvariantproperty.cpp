@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 **
 ** Copyright (C) 2016 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
@@ -2211,4 +2211,4 @@ void QtVariantEditorFactory::disconnectPropertyManager(QtVariantPropertyManager 
 
 QT_END_NAMESPACE
 
-#include "moc_qtvariantproperty.cpp"
+//#include "moc_qtvariantproperty.cpp"

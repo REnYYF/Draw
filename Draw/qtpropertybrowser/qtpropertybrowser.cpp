@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 **
 ** Copyright (C) 2016 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
@@ -1952,4 +1952,4 @@ void QtAbstractPropertyBrowser::setCurrentItem(QtBrowserItem *item)
 
 QT_END_NAMESPACE
 
-#include "moc_qtpropertybrowser.cpp"
+//#include "moc_qtpropertybrowser.cpp"

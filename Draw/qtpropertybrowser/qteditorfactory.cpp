@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 **
 ** Copyright (C) 2016 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
@@ -2524,5 +2524,5 @@ void QtFontEditorFactory::disconnectPropertyManager(QtFontPropertyManager *manag
 
 QT_END_NAMESPACE
 
-#include "moc_qteditorfactory.cpp"
-#include "qteditorfactory.moc"
+//#include "moc_qteditorfactory.cpp"
+//#include "qteditorfactory.moc"

@@ -505,17 +505,17 @@ void MainWindow::createFunctionalArea()
 	verPaly->setSpacing(2);
 	verPaly->addWidget(m_undoView, 1);
 
-    m_pGraPro=new GraphicsProperty(widget);
-	connect(this, SIGNAL(itemsChange(QGraphicsItem *)), m_pGraPro, SLOT(onItemsChange(QGraphicsItem *)));
-	connect(m_pGraPro, SIGNAL(valuesChange()), this, SLOT(onValuesChange()));
-    //m_pGraPro->setFixedSize(widget->width() / 5 , widget->height());
-    m_pGraPro->show();
+ //   m_pGraPro=new GraphicsProperty(widget);
+	//connect(this, SIGNAL(itemsChange(QGraphicsItem *)), m_pGraPro, SLOT(onItemsChange(QGraphicsItem *)));
+	//connect(m_pGraPro, SIGNAL(valuesChange()), this, SLOT(onValuesChange()));
+ //   //m_pGraPro->setFixedSize(widget->width() / 5 , widget->height());
+ //   m_pGraPro->show();
 
-	verPaly->addWidget(m_pGraPro,1);
+	//verPaly->addWidget(m_pGraPro,1);
 	horPlay->addLayout(verPaly);
 
     horPlay->setStretchFactor(m_pGraphicsSelect,1);
-    horPlay->setStretchFactor(m_pGraPro,1);
+    //horPlay->setStretchFactor(m_pGraPro,1);
     horPlay->setStretchFactor(m_pEditView,3);
     widget->setLayout(horPlay);
     setCentralWidget(widget);
@@ -544,11 +544,11 @@ void MainWindow::relationTo() const
 	connect(m_scene, SIGNAL(itemResize(QGraphicsItem *, const QRectF)), this, SLOT(itemResize(QGraphicsItem *, const QRectF)));
 	connect(m_scene, SIGNAL(itemMoved(QList<QGraphicsItem *>)), this, SLOT(itemMoved(QList<QGraphicsItem *>)));
 	
-	connect(m_pGraPro, SIGNAL(itemRotate(QGraphicsItem *, const qreal)), this, SLOT(itemRotate(QGraphicsItem *, const qreal)));
+	/*connect(m_pGraPro, SIGNAL(itemRotate(QGraphicsItem *, const qreal)), this, SLOT(itemRotate(QGraphicsItem *, const qreal)));
 	connect(m_pGraPro, SIGNAL(itemLineColor(QGraphicsScene *, const QColor)), this, SLOT(itemLineColor(QGraphicsScene *, const QColor)));
 	connect(m_pGraPro, SIGNAL(itemLineSize(QGraphicsScene *, const qreal)), this, SLOT(itemLineSize(QGraphicsScene *, const qreal)));
 	connect(m_pGraPro, SIGNAL(itemBrushColor(QGraphicsScene *, const QColor)), this, SLOT(itemBrushColor(QGraphicsScene *, const QColor)));
 	connect(m_pGraPro, SIGNAL(itemMoved(QList<QGraphicsItem *>)), this, SLOT(itemMoved(QList<QGraphicsItem *>)));
-	connect(m_pGraPro, SIGNAL(itemResize(QGraphicsItem *, const QRectF)), this, SLOT(itemResize(QGraphicsItem *, const QRectF)));
+	connect(m_pGraPro, SIGNAL(itemResize(QGraphicsItem *, const QRectF)), this, SLOT(itemResize(QGraphicsItem *, const QRectF)));*/
 }
 

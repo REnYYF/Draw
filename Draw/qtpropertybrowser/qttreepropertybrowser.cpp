@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 **
 ** Copyright (C) 2016 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
@@ -1033,5 +1033,5 @@ void QtTreePropertyBrowser::editItem(QtBrowserItem *item)
 
 QT_END_NAMESPACE
 
-#include "moc_qttreepropertybrowser.cpp"
-#include "qttreepropertybrowser.moc"
+//#include "moc_qttreepropertybrowser.cpp"
+//#include "qttreepropertybrowser.moc"
