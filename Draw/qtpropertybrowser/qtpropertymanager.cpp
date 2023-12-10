@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** Copyright (C) 2016 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
@@ -428,7 +428,7 @@ void QtMetaEnumProvider::initLocale()
     if (!nameToLanguage.contains(QLocale::languageToString(system.language())))
         nameToLanguage.insert(QLocale::languageToString(system.language()), system.language());
 
-    const QList<QLocale::Language> languages = nameToLanguage.values();
+    const auto languages = nameToLanguage.values();
     for (QLocale::Language language : languages) {
         QList<QLocale::Country> countries;
         countries = QLocale::countriesForLanguage(language);
@@ -552,7 +552,7 @@ QtGroupPropertyManager::~QtGroupPropertyManager()
 */
 bool QtGroupPropertyManager::hasValue(const QtProperty *property) const
 {
-    Q_UNUSED(property)
+    Q_UNUSED(property);
     return false;
 }
 
@@ -561,7 +561,7 @@ bool QtGroupPropertyManager::hasValue(const QtProperty *property) const
 */
 void QtGroupPropertyManager::initializeProperty(QtProperty *property)
 {
-    Q_UNUSED(property)
+    Q_UNUSED(property);
 }
 
 /*!
@@ -569,7 +569,7 @@ void QtGroupPropertyManager::initializeProperty(QtProperty *property)
 */
 void QtGroupPropertyManager::uninitializeProperty(QtProperty *property)
 {
-    Q_UNUSED(property)
+    Q_UNUSED(property);
 }
 
 // QtIntPropertyManager
@@ -5660,7 +5660,7 @@ void QtFontPropertyManagerPrivate::slotFontDatabaseDelayedChange()
     m_familyNames = fontDatabase()->families();
 
     // Adapt all existing properties
-    if (!m_propertyToFamily.empty()) {
+    if (!m_propertyToFamily.isEmpty()) {
         PropertyPropertyMap::const_iterator cend = m_propertyToFamily.constEnd();
         for (PropertyPropertyMap::const_iterator it = m_propertyToFamily.constBegin(); it != cend; ++it) {
             QtProperty *familyProp = it.value();
@@ -5875,7 +5875,7 @@ void QtFontPropertyManager::initializeProperty(QtProperty *property)
 
     QtProperty *familyProp = d_ptr->m_enumPropertyManager->addProperty();
     familyProp->setPropertyName(tr("Family"));
-    if (d_ptr->m_familyNames.empty())
+    if (d_ptr->m_familyNames.isEmpty())
         d_ptr->m_familyNames = fontDatabase()->families();
     d_ptr->m_enumPropertyManager->setEnumNames(familyProp, d_ptr->m_familyNames);
     int idx = d_ptr->m_familyNames.indexOf(val.family());
@@ -6426,5 +6426,5 @@ void QtCursorPropertyManager::uninitializeProperty(QtProperty *property)
 
 QT_END_NAMESPACE
 
-//#include "moc_qtpropertymanager.cpp"
-//#include "qtpropertymanager.moc"
+#include "moc_qtpropertymanager.cpp"
+#include "qtpropertymanager.moc"

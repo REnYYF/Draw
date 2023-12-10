@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** Copyright (C) 2016 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
@@ -124,7 +124,7 @@ void EditorFactoryPrivate<Editor>::slotEditorDestroyed(QObject *object)
             const typename PropertyToEditorListMap::iterator pit = m_createdEditors.find(property);
             if (pit != m_createdEditors.end()) {
                 pit.value().removeAll(editor);
-                if (pit.value().empty())
+                if (pit.value().isEmpty())
                     m_createdEditors.erase(pit);
             }
             m_editorToProperty.erase(itEditor);
@@ -1530,7 +1530,7 @@ QtCharEdit::QtCharEdit(QWidget *parent)
 {
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->addWidget(m_lineEdit);
-    layout->setMargin(0);
+    layout->setContentsMargins(QMargins());
     m_lineEdit->installEventFilter(this);
     m_lineEdit->setReadOnly(true);
     m_lineEdit->setFocusProxy(this);
@@ -1543,7 +1543,7 @@ bool QtCharEdit::eventFilter(QObject *o, QEvent *e)
     if (o == m_lineEdit && e->type() == QEvent::ContextMenu) {
         QContextMenuEvent *c = static_cast<QContextMenuEvent *>(e);
         QMenu *menu = m_lineEdit->createStandardContextMenu();
-        const QList<QAction *> actions = menu->actions();
+        const auto actions = menu->actions();
         for (QAction *action : actions) {
             action->setShortcut(QKeySequence());
             QString actionString = action->text();
@@ -2524,5 +2524,5 @@ void QtFontEditorFactory::disconnectPropertyManager(QtFontPropertyManager *manag
 
 QT_END_NAMESPACE
 
-//#include "moc_qteditorfactory.cpp"
-//#include "qteditorfactory.moc"
+#include "moc_qteditorfactory.cpp"
+#include "qteditorfactory.moc"

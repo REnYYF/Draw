@@ -1,4 +1,4 @@
-﻿/****************************************************************************
+/****************************************************************************
 **
 ** Copyright (C) 2016 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
@@ -517,4 +517,4 @@ void QtGroupBoxPropertyBrowser::itemChanged(QtBrowserItem *item)
 
 QT_END_NAMESPACE
 
-//#include "moc_qtgroupboxpropertybrowser.cpp"
+#include "moc_qtgroupboxpropertybrowser.cpp"
