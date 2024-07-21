@@ -1,4 +1,5 @@
 ﻿#include "mainwindow.h"
+#include "dragbutton.h"
 #include <QColorDialog>
 #include <QDebug>
 
@@ -394,7 +395,7 @@ QScrollArea* MainWindow::createSelectArea(QWidget* widget)
     verPlay->addWidget(butGroup);
     verPlay->addStretch();
 
-    QPushButton* but1 = new QPushButton(QIcon(":/icons/bear.png"), "", scroll);
+    QPushButton* but1 = new DragButton(QIcon(":/icons/bear.png"), "", scroll);
     but1->setIconSize(QSize(50, 50));
     but1->setStyleSheet("QPushButton{\
 						background-color: #e3e3e3;\
