@@ -1,7 +1,10 @@
 ﻿#include "mainwindow.h"
 #include "dragbutton.h"
+#include "itemlistview.h"
 #include <QColorDialog>
+#include <QSplitter>
 #include <QDebug>
+#include <QLineEdit>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -483,43 +486,66 @@ QScrollArea* MainWindow::createSelectArea(QWidget* widget)
 
 void MainWindow::createFunctionalArea()
 {
-    QWidget* widget = new QWidget(this);
-    //widget->setFixedSize(this->width(), this->height());
-    //水平布局
-    QHBoxLayout* horPlay = new QHBoxLayout;
-    horPlay->setSpacing(2);
-    horPlay->setMargin(5);
+    //    m_pGraphicsSelect = createSelectArea(this);
 
-    m_pGraphicsSelect = createSelectArea(widget);
-    horPlay->addWidget(m_pGraphicsSelect);
+    auto searchLineEdit = new QLineEdit(this);
+    searchLineEdit->setPlaceholderText("请搜索");
+    QAction* pActLeft = new QAction(this);
+    pActLeft->setIcon(QIcon(":/icons/search.png"));
+    searchLineEdit->addAction(pActLeft, QLineEdit::TrailingPosition);
+
+
+    auto itemListView = new ItemListView(this);
+    auto poxy = new QSortFilterProxyModel(this);
+    poxy->setSourceModel(itemListView->model());
+    itemListView->setModel(poxy);
+    QList<ItemData> DataLists =
+    {
+        ItemData{"bear", ":/icons/bear.svg", DrawScene::Model::enBearItem},
+        ItemData{"star", ":/icons/star.svg", DrawScene::Model::enStarItem},
+        ItemData{"CartoonFace", ":/icons/CartoonFace.svg", DrawScene::Model::enCartoonFace}
+    };
+    itemListView->model()->insertItem(DataLists);
+    connect(searchLineEdit, &QLineEdit::textEdited, this, [poxy](const QString & text)
+    {
+        QRegExp reg;
+        reg.setCaseSensitivity(Qt::CaseSensitivity::CaseInsensitive);
+        reg.setPattern(text);
+        poxy->setFilterRegExp(reg);
+    });
+
+    auto selectAreaWidget = new QWidget(this);
+    auto selectAreaLayout = new QVBoxLayout(this);
+    selectAreaLayout->setContentsMargins(0, 0, 0, 0);
+    selectAreaLayout->addWidget(searchLineEdit);
+    selectAreaLayout->addWidget(itemListView);
+    selectAreaWidget->setLayout(selectAreaLayout);
 
     m_scene = new DrawScene;
-    m_scene->setSceneRect(0, 0, 1920, 1080);
-    m_pEditView = new DrawView(m_scene, widget);
+    m_pEditView = new DrawView(m_scene, this);
     m_pEditView->show();
     connect(m_scene, SIGNAL(itemsChange(QGraphicsItem*)), this, SLOT(onItemsChange(QGraphicsItem*)));
-    //m_pEditView->setFixedSize(widget->width() / 5 * 3, widget->height());
-    horPlay->addWidget(m_pEditView);
 
-    //创建垂直布局（右侧）
-    QVBoxLayout* verPaly = new QVBoxLayout;
-    verPaly->setSpacing(2);
-    verPaly->addWidget(m_undoView, 1);
 
-    m_pGraPro = new GraphicsProperty(widget);
+    m_pGraPro = new GraphicsProperty(this);
     connect(this, SIGNAL(itemsChange(QGraphicsItem*)), m_pGraPro, SLOT(onItemsChange(QGraphicsItem*)));
     connect(m_pGraPro, SIGNAL(valuesChange()), this, SLOT(onValuesChange()));
-    //m_pGraPro->setFixedSize(widget->width() / 5 , widget->height());
-    m_pGraPro->show();
 
-    verPaly->addWidget(m_pGraPro, 1);
-    horPlay->addLayout(verPaly);
+    auto rightWidget = new QWidget(this);
+    auto rightVLayout = new QVBoxLayout;
+    rightVLayout->setContentsMargins(0, 0, 0, 0);
+    rightVLayout->addWidget(m_undoView);
+    rightVLayout->addWidget(m_pGraPro);
+    rightWidget->setLayout(rightVLayout);
 
-    horPlay->setStretchFactor(m_pGraphicsSelect, 1);
-    horPlay->setStretchFactor(m_pGraPro, 1);
-    horPlay->setStretchFactor(m_pEditView, 3);
-    widget->setLayout(horPlay);
-    setCentralWidget(widget);
+    auto splitter = new QSplitter(this);
+    splitter->setHandleWidth(0);
+    splitter->addWidget(selectAreaWidget);
+    splitter->addWidget(m_pEditView);
+    splitter->addWidget(rightWidget);
+    splitter->setSizes({70, 200, 100});
+    splitter->setChildrenCollapsible(false);
+    setCentralWidget(splitter);
 }
 
 QMenu* MainWindow::createLineSizeMenu()
