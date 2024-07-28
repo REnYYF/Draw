@@ -572,6 +572,27 @@ void DrawScene::dropEvent(QGraphicsSceneDragDropEvent* event)
     QGraphicsScene::dropEvent(event);
 }
 
+void DrawScene::drawBackground(QPainter* painter, const QRectF &rect)
+{
+    int mGridSize = 20;
+    QRect r = rect.toRect();
+    int xmin = r.left() - r.left() % mGridSize - mGridSize;
+    int ymin = r.top() - r.top() % mGridSize - mGridSize;
+    int xmax = r.right() - r.right() % mGridSize + mGridSize;
+    int ymax = r.bottom() - r.bottom() % mGridSize + mGridSize;
+    painter->setRenderHints(QPainter::Antialiasing, true);
+    for (int x = xmin; x <= xmax; x += mGridSize)
+    {
+        painter->drawLine(x, r.top(), x, r.bottom());
+    }
+
+    for (int y = ymin; y <= ymax; y += mGridSize)
+    {
+        painter->drawLine(r.left(), y, r.right(), y);
+    }
+    qInfo() << "drawBackground" << rect;
+}
+
 ItemBase* acquireItemType(QGraphicsItem* item)
 {
 

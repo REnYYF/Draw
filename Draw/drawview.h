@@ -7,12 +7,17 @@ class DrawView : public QGraphicsView
 {
     Q_OBJECT
 public:
-    DrawView(QGraphicsScene *scene,QWidget *parent=nullptr);
+    DrawView(QGraphicsScene* scene, QWidget* parent = nullptr);
 
     // QWidget interface
 protected:
-    void mousePressEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent* event) override;
+    void mouseReleaseEvent(QMouseEvent* event) override;
+    void wheelEvent(QWheelEvent* event) override;
+
+private:
+    float         m_scale = 1; // 缩放比例
+
 };
 
 #endif // DRAWVIEW_H
